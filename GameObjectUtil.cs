@@ -148,7 +148,7 @@ public static class GameObjectUtil
     [PublicAPI]
     public static void LogStructure(this UScene scene)
     {
-        Logger.Log($"[SceneLog] - Scene \"{scene.name}\"");
+        InternalLogger.Log($"[SceneLog] - Scene \"{scene.name}\"");
         foreach (var go in scene.GetRootGameObjects())
             go.transform.LogStructure();
     }
@@ -161,9 +161,9 @@ public static class GameObjectUtil
     [PublicAPI]
     public static void LogStructure(this Transform go, string n = "\t")
     {
-        Logger.Log($"[SceneLog] - {n}\"{go.name}\"");
+        InternalLogger.Log($"[SceneLog] - {n}\"{go.name}\"");
         foreach (var comp in go.GetComponents<Component>())
-            Logger.Log($"[SceneLog] - {n} => \"{comp.GetType()}\": {comp}");
+            InternalLogger.Log($"[SceneLog] - {n} => \"{comp.GetType()}\": {comp}");
         for (var i = 0; i < go.childCount; i++)
             go.GetChild(i).LogStructure($"{n}\t");
     }
